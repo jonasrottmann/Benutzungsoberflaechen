@@ -11,6 +11,7 @@ import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
@@ -40,6 +41,9 @@ import org.osgi.service.event.EventHandler;
 import de.hska.iwii.stockquotes.net.IStockQuotes;
 import de.hska.iwii.stockquotes.net.StockData;
 import de.hska.iwii.stockquotes.net.StockData.CurrentPriceChange;
+import de.hska.iwii.stockquotes.net.simulation.StockQuotesSimulation;
+import de.hska.iwii.stockquotes.net.yahoo.StockQuotesYahoo;
+import de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.contentProviders.StockDataContentProvider;
 
 public class StockQuotesPart implements EventHandler {
 
@@ -53,10 +57,15 @@ public class StockQuotesPart implements EventHandler {
 	private Combo combo;
 	private Combo combo_1;
 	private Table table;
+	private ProgressBar progressBar;
 	
-	// Stock Data
+	// StockData
 	private IStockQuotes stockQuotesSource;
 	private List<StockData> stockDataModel = new ArrayList<>();
+	@Inject
+	private StockQuotesSimulation simulationSource;
+	@Inject
+	private StockQuotesYahoo yahooSource;
 	
 	// Listener
 	private SelectionListener comboboxSelectionListener = new SelectionListener() {
@@ -74,12 +83,17 @@ public class StockQuotesPart implements EventHandler {
 			
 		}
 	};
+	@Inject
+	private IEventBroker broker;
 	
 	@Inject
 	private MDirtyable dirty;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
+		broker.subscribe("de/hska/iwii/*", this);
+		
+		
 		parent.setLayout(new GridLayout(1, false));
 
 		Composite composite = new Composite(parent, SWT.NONE);
@@ -249,7 +263,7 @@ public class StockQuotesPart implements EventHandler {
 		TableColumn tblclmnNewColumn_6 = tableViewerColumn_7.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_6, new ColumnPixelData(90, true, true));
 		tblclmnNewColumn_6.setText(Messages.SamplePart_endDate);
-		// tableViewer.setContentProvider(new StockDataContentProvider());
+		tableViewer.setContentProvider(new StockDataContentProvider());
 		
 		Composite composite_4 = new Composite(parent, SWT.NONE);
 		composite_4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -258,7 +272,8 @@ public class StockQuotesPart implements EventHandler {
 		rl_composite_4.center = true;
 		composite_4.setLayout(rl_composite_4);
 		
-		ProgressBar progressBar = new ProgressBar(composite_4, SWT.NONE);
+		progressBar = new ProgressBar(composite_4, SWT.INDETERMINATE);
+		progressBar.setVisible(false);
 		
 		Label lblStatus = new Label(composite_4, SWT.NONE);
 		lblStatus.setText("Status");
@@ -274,14 +289,31 @@ public class StockQuotesPart implements EventHandler {
 		dirty.setDirty(false);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("StockQuotesPart:handleEvent()");
+
+		if (event.getTopic().equals("de/hska/iwii/stockdata")) {
+			stockDataModel = (List<StockData>) event.getProperty("stockdata");
+			tableViewer.setInput(stockDataModel);
+		}
+		progressBar.setVisible(false);
 	}
 
 	public void refreshData() {
-		// TODO Auto-generated method stub
 		System.out.println("StockQuotesPart:refreshData()");
+		
+		String selectedDataSourceKey = combo_1.getText();
+		if (selectedDataSourceKey.equals(DATA_SOURCE_SIMULATION)) {
+			stockQuotesSource = simulationSource;
+		}
+		if (selectedDataSourceKey.equals(DATA_SOURCE_YAHOO)) {
+			stockQuotesSource = yahooSource;
+		}
+				
+		stockQuotesSource.requestDataAsync(combo.getText());
+		tableViewer.setInput(stockDataModel);
+		progressBar.setVisible(true);
 	}
 }
