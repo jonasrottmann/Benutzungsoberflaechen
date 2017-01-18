@@ -91,7 +91,7 @@ public class SamplePart implements EventHandler {
 		
 		Label label = new Label(composite_1, SWT.NONE);
 		label.setAlignment(SWT.RIGHT);
-		label.setText("Index:"); //$NON-NLS-1$
+		label.setText("Index:");
 		
 		combo = new Combo(composite_1, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
@@ -101,7 +101,7 @@ public class SamplePart implements EventHandler {
 		
 		Label label_1 = new Label(composite_1, SWT.NONE);
 		label_1.setAlignment(SWT.RIGHT);
-		label_1.setText("Filter:"); //$NON-NLS-1$
+		label_1.setText("Filter:");
 		
 		text = new Text(composite_1, SWT.BORDER);
 		
@@ -156,7 +156,7 @@ public class SamplePart implements EventHandler {
 		tableViewerColumn_2.setLabelProvider(new ColumnLabelProvider() {
 			
 			public String getText(Object element) {
-//				final String format = "$###,###.###"; //$NON-NLS-1$
+//				final String format = "$###,###.###";
 				NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.GERMANY);
 				DecimalFormat df = (DecimalFormat) nf;
 //				df.applyPattern(format);
