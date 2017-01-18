@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            name="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application"
+            application="org.eclipse.e4.ui.workbench.swt.E4Application">
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/de.jonasrottmann.benutzungsoberflaechen.stockquotes.application/css/default.css">
+         </property>
+         <property
+               name="appName"
+               value="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
