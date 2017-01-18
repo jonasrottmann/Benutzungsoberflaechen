@@ -41,7 +41,7 @@ import de.hska.iwii.stockquotes.net.IStockQuotes;
 import de.hska.iwii.stockquotes.net.StockData;
 import de.hska.iwii.stockquotes.net.StockData.CurrentPriceChange;
 
-public class SamplePart implements EventHandler {
+public class StockQuotesPart implements EventHandler {
 
 	// Constants
 	private static String DATA_SOURCE_SIMULATION = "Simulation";

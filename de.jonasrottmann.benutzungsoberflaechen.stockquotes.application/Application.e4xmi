@@ -5,7 +5,7 @@
       <children xsi:type="advanced:Perspective" xmi:id="_6wlLkcgZEeSyMNYR5xypkQ" elementId="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.perspective.sample">
         <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.partsashcontainer.sample">
           <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.partstack.sample">
-            <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.part.sample" contributionURI="bundleclass://de.jonasrottmann.benutzungsoberflaechen.stockquotes.application/de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.parts.SamplePart" label="Sample Part"/>
+            <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.part.sample" contributionURI="bundleclass://de.jonasrottmann.benutzungsoberflaechen.stockquotes.application/de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.parts.StockQuotesPart" label="Aktuelle Kurse"/>
           </children>
         </children>
       </children>
