@@ -279,4 +279,9 @@ public class StockQuotesPart implements EventHandler {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void refreshData() {
+		// TODO Auto-generated method stub
+		System.out.println("StockQuotesPart:refreshData()");
+	}
 }
