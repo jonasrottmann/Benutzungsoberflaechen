@@ -7,15 +7,17 @@
    </configIni>
 
    <launcherArgs>
-      <programArgs>-clearPersistedState</programArgs>
-      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+      <programArgs>-clearPersistedState
+      </programArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
    </launcherArgs>
 
    <windowImages/>
 
    <plugins>
-      <plugin id="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="de.jonasrottmann.benutzungsoberflaechen.stockquotes.application"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.xml"/>
