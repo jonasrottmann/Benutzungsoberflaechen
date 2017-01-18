@@ -43,17 +43,18 @@ import de.hska.iwii.stockquotes.net.StockData.CurrentPriceChange;
 
 public class SamplePart implements EventHandler {
 
+	// Constants
 	private static String DATA_SOURCE_SIMULATION = "Simulation";
 	private static String DATA_SOURCE_YAHOO = "Yahoo";
-		
-	
+
 	// Views
 	private TableViewer tableViewer;
+	private Text text;
 	private Combo combo;
 	private Combo combo_1;
-	private Text text;
 	private Table table;
 	
+	// Stock Data
 	private IStockQuotes stockQuotesSource;
 	private List<StockData> stockDataModel = new ArrayList<>();
 	
@@ -70,16 +71,10 @@ public class SamplePart implements EventHandler {
 		
 		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
-			// nicht verwendet
+			
 		}
 	};
 	
-	
-	
-	
-	
-	
-
 	@Inject
 	private MDirtyable dirty;
 
@@ -277,10 +272,6 @@ public class SamplePart implements EventHandler {
 	@Persist
 	public void save() {
 		dirty.setDirty(false);
-	}
-	
-	private List<String> createInitialDataModel() {
-		return Arrays.asList("Sample item 1", "Sample item 2", "Sample item 3", "Sample item 4", "Sample item 5");
 	}
 
 	@Override
