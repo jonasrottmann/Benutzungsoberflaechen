@@ -3,7 +3,6 @@ package de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.parts;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -55,9 +54,8 @@ public class StockQuotesPart implements EventHandler {
 	
 	// Views
 	private TableViewer tableViewer;
-	private Text text;
-	private Combo combo;
-	private Combo combo_1;
+	private Combo comboStockIndex;
+	private Combo comboDataSource;
 	private Table table;
 	private ProgressBar progressBar;
 	
@@ -109,18 +107,16 @@ public class StockQuotesPart implements EventHandler {
 		label.setAlignment(SWT.RIGHT);
 		label.setText(Messages.StockQuotesPart_index);
 		
-		combo = new Combo(composite_1, SWT.READ_ONLY);
-		combo.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		combo.setItems(IStockQuotes.ALL_STOCK_INDEXES);
-		combo.select(0);
-		combo.addSelectionListener(comboboxSelectionListener);
+		comboStockIndex = new Combo(composite_1, SWT.READ_ONLY);
+		comboStockIndex.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+		comboStockIndex.setItems(IStockQuotes.ALL_STOCK_INDEXES);
+		comboStockIndex.select(0);
+		comboStockIndex.addSelectionListener(comboboxSelectionListener);
 		
 		Label label_1 = new Label(composite_1, SWT.NONE);
 		label_1.setAlignment(SWT.RIGHT);
 		label_1.setText(Messages.StockQuotesPart_filter);
-		
-		text = new Text(composite_1, SWT.BORDER);
-		
+				
 		Composite composite_2 = new Composite(composite, SWT.NONE);
 		composite_2.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1));
 		RowLayout rl_composite_2 = new RowLayout(SWT.HORIZONTAL);
@@ -131,10 +127,10 @@ public class StockQuotesPart implements EventHandler {
 		label_2.setAlignment(SWT.RIGHT);
 		label_2.setText(Messages.StockQuotesPart_dataSource);
 		
-		combo_1 = new Combo(composite_2, SWT.READ_ONLY);
-		combo_1.setItems(new String[] {DATA_SOURCE_SIMULATION, DATA_SOURCE_YAHOO});
-		combo_1.select(0);
-		combo_1.addSelectionListener(comboboxSelectionListener);
+		comboDataSource = new Combo(composite_2, SWT.READ_ONLY);
+		comboDataSource.setItems(new String[] {DATA_SOURCE_SIMULATION, DATA_SOURCE_YAHOO});
+		comboDataSource.select(0);
+		comboDataSource.addSelectionListener(comboboxSelectionListener);
 		
 		Composite composite_3 = new Composite(parent, SWT.NONE);
 		composite_3.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
@@ -170,12 +166,9 @@ public class StockQuotesPart implements EventHandler {
 		
 		TableViewerColumn tableViewerColumn_2 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_2.setLabelProvider(new ColumnLabelProvider() {
-			
 			public String getText(Object element) {
-//				final String format = "$###,###.###";
 				NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.GERMANY);
 				DecimalFormat df = (DecimalFormat) nf;
-//				df.applyPattern(format);
 				df.setCurrency(Currency.getInstance(Locale.US));
 
 				String output = ""; 
@@ -316,7 +309,7 @@ public class StockQuotesPart implements EventHandler {
 	public void refreshData() {
 		System.out.println("StockQuotesPart:refreshData()");
 		
-		String selectedDataSourceKey = combo_1.getText();
+		String selectedDataSourceKey = comboDataSource.getText();
 		if (selectedDataSourceKey.equals(DATA_SOURCE_SIMULATION)) {
 			stockQuotesSource = simulationSource;
 		}
@@ -328,7 +321,7 @@ public class StockQuotesPart implements EventHandler {
 			}
 		}
 				
-		stockQuotesSource.requestDataAsync(combo.getText());
+		stockQuotesSource.requestDataAsync(comboStockIndex.getText());
 		tableViewer.setInput(stockDataModel);
 		progressBar.setVisible(true);
 	}

@@ -1,9 +1,7 @@
 package de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.parts;
 
-import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -32,7 +30,7 @@ public class SettingsPart {
 	private Text port;
 	private Text username;
 	private Text password;
-		
+	
 	@PostConstruct
 	public void createComposite(Composite parent, MApplication app, EModelService modelService) {
 		parent.setLayout(new GridLayout(2, false));
