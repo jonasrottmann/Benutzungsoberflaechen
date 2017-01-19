@@ -37,39 +37,39 @@ public class SettingsPart {
 	public void createComposite(Composite parent, MApplication app, EModelService modelService) {
 		parent.setLayout(new GridLayout(2, false));
 		
-		Label lblNewLabel = new Label(parent, SWT.NONE);
-		lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblNewLabel.setText("HTTP-Proxy:");
+		Label labelHTTP = new Label(parent, SWT.NONE);
+		labelHTTP.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		labelHTTP.setText("HTTP-Proxy:");
 		
-		Button btnVerwenden = new Button(parent, SWT.CHECK);
-		btnVerwenden.setText("verwenden");
+		Button checkboxUseProxy = new Button(parent, SWT.CHECK);
+		checkboxUseProxy.setText("verwenden");
 		
-		Label lblNewLabel_1 = new Label(parent, SWT.NONE);
-		lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblNewLabel_1.setText("Proxyname:");
+		Label labelURL = new Label(parent, SWT.NONE);
+		labelURL.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		labelURL.setText("Proxyname:");
 		
 		url = new Text(parent, SWT.BORDER);
 		url.setText("proxy.hs-karlsruhe.de");
 		url.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
-		Label lblPort = new Label(parent, SWT.NONE);
-		lblPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblPort.setText("Proxyport:");
+		Label labelPort = new Label(parent, SWT.NONE);
+		labelPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		labelPort.setText("Proxyport:");
 		
 		port = new Text(parent, SWT.BORDER);
 		port.setText("8888");
 		port.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
-		Label lblBenutzername = new Label(parent, SWT.NONE);
-		lblBenutzername.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblBenutzername.setText("Benutzername:");
+		Label labelUsername = new Label(parent, SWT.NONE);
+		labelUsername.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		labelUsername.setText("Benutzername:");
 		
 		username = new Text(parent, SWT.BORDER);
 		username.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
-		Label lblPasswort = new Label(parent, SWT.NONE);
-		lblPasswort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblPasswort.setText("Passwort:");
+		Label labelPassword = new Label(parent, SWT.NONE);
+		labelPassword.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		labelPassword.setText("Passwort:");
 		
 		password = new Text(parent, SWT.BORDER | SWT.PASSWORD);
 		password.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -80,13 +80,13 @@ public class SettingsPart {
 		composite.setLayoutData(gd_composite);
 		composite.setLayout(new RowLayout(SWT.HORIZONTAL));
 		
-		Button btnbernehmen = new Button(composite, SWT.NONE);
-		btnbernehmen.setText("Übernehmen");
-		btnbernehmen.addSelectionListener(new SelectionListener() {
+		Button buttonSubmit = new Button(composite, SWT.NONE);
+		buttonSubmit.setText("Übernehmen");
+		buttonSubmit.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Dictionary<String, String> properties = null;
-				if (btnVerwenden.getSelection()) {
+				if (checkboxUseProxy.getSelection()) {
 					properties = new Hashtable<>();
 					properties.put("url", url.getText());
 					properties.put("port", port.getText());
