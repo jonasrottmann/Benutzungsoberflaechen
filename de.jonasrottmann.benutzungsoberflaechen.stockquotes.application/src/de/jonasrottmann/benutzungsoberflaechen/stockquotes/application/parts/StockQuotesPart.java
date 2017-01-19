@@ -51,6 +51,8 @@ public class StockQuotesPart implements EventHandler {
 	private static String DATA_SOURCE_SIMULATION = "Simulation";
 	private static String DATA_SOURCE_YAHOO = "Yahoo";
 
+	private ProxySettings settings;
+	
 	// Views
 	private TableViewer tableViewer;
 	private Text text;
@@ -92,7 +94,7 @@ public class StockQuotesPart implements EventHandler {
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		broker.subscribe("de/hska/iwii/*", this);
-		
+		broker.subscribe("de/jonasrottmann/benutzungsoberflaechen/*", this);
 		
 		parent.setLayout(new GridLayout(1, false));
 
@@ -294,11 +296,21 @@ public class StockQuotesPart implements EventHandler {
 	public void handleEvent(Event event) {
 		System.out.println("StockQuotesPart:handleEvent()");
 
-		if (event.getTopic().equals("de/hska/iwii/stockdata")) {
+		switch (event.getTopic()) {
+		case "de/hska/iwii/stockdata":
 			stockDataModel = (List<StockData>) event.getProperty("stockdata");
 			tableViewer.setInput(stockDataModel);
+			progressBar.setVisible(false);
+			break;
+		case "de/jonasrottmann/benutzungsoberflaechen/stockquotes/application/settings/updated":
+				settings = event.containsProperty("url") ? 
+						new ProxySettings((String) event.getProperty("url"), 
+								Integer.parseInt((String) event.getProperty("port")),
+								(String) event.getProperty("username"), 
+								(String) event.getProperty("password")) 
+						: null;		
+			break;
 		}
-		progressBar.setVisible(false);
 	}
 
 	public void refreshData() {
@@ -310,10 +322,50 @@ public class StockQuotesPart implements EventHandler {
 		}
 		if (selectedDataSourceKey.equals(DATA_SOURCE_YAHOO)) {
 			stockQuotesSource = yahooSource;
+			if (!(settings == null)) {
+				stockQuotesSource.setProxy(settings.getUrl(), settings.getPort());
+				stockQuotesSource.setProxyAuthentication(settings.getUsername(), settings.getPassword());
+			}
 		}
 				
 		stockQuotesSource.requestDataAsync(combo.getText());
 		tableViewer.setInput(stockDataModel);
 		progressBar.setVisible(true);
+	}
+	
+	private static class ProxySettings {
+		private final String url;
+		private final int port;
+		private final String username;
+		private final String password;
+		
+		public ProxySettings(String url, int port, String username, String password) {
+			super();
+			this.url = url;
+			this.port = port;
+			this.username = username;
+			this.password = password;
+		}
+		
+		public String getUrl() {
+			return url;
+		}
+		
+		public int getPort() {
+			return port;
+		}
+		
+		public String getUsername() {
+			return username;
+		}
+		
+		public String getPassword() {
+			return password;
+		}
+		
+		@Override
+		public String toString() {
+			return String.format("{ url: %s; port: %s; username %s; password: %s }", this.url, this.port, this.username, this.password);
+		}
 	}
 }

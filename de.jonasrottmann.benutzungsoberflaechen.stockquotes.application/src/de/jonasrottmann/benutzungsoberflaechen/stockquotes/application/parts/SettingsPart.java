@@ -28,10 +28,10 @@ public class SettingsPart {
 	private IEventBroker eventBroker;
 	
 	// Views
-	private Text txtName;
-	private Text text;
-	private Text text_1;
-	private Text text_2;
+	private Text url;
+	private Text port;
+	private Text username;
+	private Text password;
 		
 	@PostConstruct
 	public void createComposite(Composite parent, MApplication app, EModelService modelService) {
@@ -48,31 +48,31 @@ public class SettingsPart {
 		lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblNewLabel_1.setText("Proxyname:");
 		
-		txtName = new Text(parent, SWT.BORDER);
-		txtName.setText("proxy.hs-karlsruhe.de");
-		txtName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		url = new Text(parent, SWT.BORDER);
+		url.setText("proxy.hs-karlsruhe.de");
+		url.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label lblPort = new Label(parent, SWT.NONE);
 		lblPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblPort.setText("Proxyport:");
 		
-		text = new Text(parent, SWT.BORDER);
-		text.setText("8888");
-		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		port = new Text(parent, SWT.BORDER);
+		port.setText("8888");
+		port.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label lblBenutzername = new Label(parent, SWT.NONE);
 		lblBenutzername.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblBenutzername.setText("Benutzername:");
 		
-		text_1 = new Text(parent, SWT.BORDER);
-		text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		username = new Text(parent, SWT.BORDER);
+		username.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label lblPasswort = new Label(parent, SWT.NONE);
 		lblPasswort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		lblPasswort.setText("Passwort:");
 		
-		text_2 = new Text(parent, SWT.BORDER | SWT.PASSWORD);
-		text_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		password = new Text(parent, SWT.BORDER | SWT.PASSWORD);
+		password.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridData gd_composite = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 2, 1);
@@ -83,27 +83,20 @@ public class SettingsPart {
 		Button btnbernehmen = new Button(composite, SWT.NONE);
 		btnbernehmen.setText("Übernehmen");
 		btnbernehmen.addSelectionListener(new SelectionListener() {
-			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				List<String> userSelection = new ArrayList<>();
-				
-				// wenn "HTTP-Proxy verwenden" angeklickt ist, übernehmen wir die Proxy Einstellungen
+				Dictionary<String, String> properties = null;
 				if (btnVerwenden.getSelection()) {
-					// Getting all properties, which have been set by the user
-					userSelection.add(txtName.getText());
-					userSelection.add(text.getText());
-					userSelection.add(text_1.getText());
-					userSelection.add(text_2.getText());
+					properties = new Hashtable<>();
+					properties.put("url", url.getText());
+					properties.put("port", port.getText());
+					properties.put("username", username.getText());
+					properties.put("password", password.getText());
 				}
 				
-				Dictionary<String, Object> properties = new Hashtable<String, Object>();
-				properties.put("settings", userSelection);
+				eventBroker.post("de/jonasrottmann/benutzungsoberflaechen/stockquotes/application/settings/updated", properties);
 				
-				eventBroker.post("kish/settings/updated", properties);
-				
-				// hide the window
-				MTrimmedWindow window = (MTrimmedWindow)modelService.find("benutzungsoberflaechen.trimmedwindow.proxy-einstellungen", app);
+				MTrimmedWindow window = (MTrimmedWindow) modelService.find("de.jonasrottmann.benutzungsoberflaechen.stockquotes.application.trimmedwindow.settings", app);
 				window.setVisible(false);
 			}
 			
@@ -112,7 +105,5 @@ public class SettingsPart {
 				
 			}
 		});
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
 	}
 }
