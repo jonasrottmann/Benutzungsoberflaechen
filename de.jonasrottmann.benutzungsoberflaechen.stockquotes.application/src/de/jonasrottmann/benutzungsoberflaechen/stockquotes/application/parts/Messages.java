@@ -13,9 +13,18 @@ public class Messages extends NLS {
 	public static String StockQuotesPart_shortName;
 	public static String StockQuotesPart_company;
 	public static String StockQuotesPart_stock;
+	public static String StockQuotesPart_index;
+	public static String StockQuotesPart_filter;
 	
 	public static String SettingsPart_url;
-
+	public static String SettingsPart_port;
+	public static String SettingsPart_username;
+	public static String SettingsPart_password;
+	public static String SettingsPart_apply;
+	public static String SettingsPart_proxyurl;
+	public static String SettingsPart_proxyport;
+	public static String SettingsPart_submit;
+	
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}

@@ -42,34 +42,34 @@ public class SettingsPart {
 		labelHTTP.setText("HTTP-Proxy:");
 		
 		Button checkboxUseProxy = new Button(parent, SWT.CHECK);
-		checkboxUseProxy.setText("verwenden");
+		checkboxUseProxy.setText(Messages.SettingsPart_apply);
 		
 		Label labelURL = new Label(parent, SWT.NONE);
 		labelURL.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		labelURL.setText(Messages.SettingsPart_url);
 		
 		url = new Text(parent, SWT.BORDER);
-		url.setText("proxy.hs-karlsruhe.de");
+		url.setText(Messages.SettingsPart_proxyurl);
 		url.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label labelPort = new Label(parent, SWT.NONE);
 		labelPort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		labelPort.setText("Proxyport:");
+		labelPort.setText(Messages.SettingsPart_port);
 		
 		port = new Text(parent, SWT.BORDER);
-		port.setText("8888");
+		port.setText(Messages.SettingsPart_proxyport);
 		port.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label labelUsername = new Label(parent, SWT.NONE);
 		labelUsername.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		labelUsername.setText("Benutzername:");
+		labelUsername.setText(Messages.SettingsPart_username);
 		
 		username = new Text(parent, SWT.BORDER);
 		username.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		Label labelPassword = new Label(parent, SWT.NONE);
 		labelPassword.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		labelPassword.setText("Passwort:");
+		labelPassword.setText(Messages.SettingsPart_password);
 		
 		password = new Text(parent, SWT.BORDER | SWT.PASSWORD);
 		password.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
@@ -81,7 +81,7 @@ public class SettingsPart {
 		composite.setLayout(new RowLayout(SWT.HORIZONTAL));
 		
 		Button buttonSubmit = new Button(composite, SWT.NONE);
-		buttonSubmit.setText("Übernehmen");
+		buttonSubmit.setText(Messages.SettingsPart_submit);
 		buttonSubmit.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

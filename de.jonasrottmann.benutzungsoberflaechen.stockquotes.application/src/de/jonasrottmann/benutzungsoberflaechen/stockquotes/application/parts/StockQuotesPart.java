@@ -107,7 +107,7 @@ public class StockQuotesPart implements EventHandler {
 		
 		Label label = new Label(composite_1, SWT.NONE);
 		label.setAlignment(SWT.RIGHT);
-		label.setText("Index:");
+		label.setText(Messages.StockQuotesPart_index);
 		
 		combo = new Combo(composite_1, SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
@@ -117,7 +117,7 @@ public class StockQuotesPart implements EventHandler {
 		
 		Label label_1 = new Label(composite_1, SWT.NONE);
 		label_1.setAlignment(SWT.RIGHT);
-		label_1.setText("Filter:");
+		label_1.setText(Messages.StockQuotesPart_filter);
 		
 		text = new Text(composite_1, SWT.BORDER);
 		
