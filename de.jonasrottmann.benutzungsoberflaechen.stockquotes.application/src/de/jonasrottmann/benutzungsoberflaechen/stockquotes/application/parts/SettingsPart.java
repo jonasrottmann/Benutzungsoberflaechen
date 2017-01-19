@@ -46,7 +46,7 @@ public class SettingsPart {
 		
 		Label labelURL = new Label(parent, SWT.NONE);
 		labelURL.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		labelURL.setText("Proxyname:");
+		labelURL.setText(Messages.SettingsPart_url);
 		
 		url = new Text(parent, SWT.BORDER);
 		url.setText("proxy.hs-karlsruhe.de");

@@ -129,7 +129,7 @@ public class StockQuotesPart implements EventHandler {
 		
 		Label label_2 = new Label(composite_2, SWT.NONE);
 		label_2.setAlignment(SWT.RIGHT);
-		label_2.setText(Messages.SamplePart_dataSource);
+		label_2.setText(Messages.StockQuotesPart_dataSource);
 		
 		combo_1 = new Combo(composite_2, SWT.READ_ONLY);
 		combo_1.setItems(new String[] {DATA_SOURCE_SIMULATION, DATA_SOURCE_YAHOO});
@@ -155,7 +155,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn = tableViewerColumn.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn, new ColumnPixelData(30, true, true));
-		tblclmnNewColumn.setText(Messages.SamplePart_shortName);
+		tblclmnNewColumn.setText(Messages.StockQuotesPart_shortName);
 		
 		TableViewerColumn tableViewerColumn_1 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_1.setLabelProvider(new ColumnLabelProvider() {
@@ -166,7 +166,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn_1 = tableViewerColumn_1.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_1, new ColumnPixelData(150, true, true));
-		tblclmnNewColumn_1.setText(Messages.SamplePart_company);
+		tblclmnNewColumn_1.setText(Messages.StockQuotesPart_company);
 		
 		TableViewerColumn tableViewerColumn_2 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_2.setLabelProvider(new ColumnLabelProvider() {
@@ -200,7 +200,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn_2 = tableViewerColumn_2.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_2, new ColumnPixelData(90, true, true));
-		tblclmnNewColumn_2.setText(Messages.SamplePart_stock);
+		tblclmnNewColumn_2.setText(Messages.StockQuotesPart_stock);
 		
 		TableViewerColumn tableViewerColumn_3 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_3.setLabelProvider(new ColumnLabelProvider() {
@@ -224,7 +224,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnTageshchststand = tableViewerColumn_3.getColumn();
 		tcl_composite_3.setColumnData(tblclmnTageshchststand, new ColumnPixelData(90, true, true));
-		tblclmnTageshchststand.setText(Messages.SamplePart_highStock);
+		tblclmnTageshchststand.setText(Messages.StockQuotesPart_highStock);
 		
 		TableViewerColumn tableViewerColumn_4 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_4.setLabelProvider(new ColumnLabelProvider() {
@@ -234,7 +234,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn_3 = tableViewerColumn_4.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_3, new ColumnPixelData(90, true, true));
-		tblclmnNewColumn_3.setText(Messages.SamplePart_lowStock);
+		tblclmnNewColumn_3.setText(Messages.StockQuotesPart_lowStock);
 		
 		TableViewerColumn tableViewerColumn_5 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_5.setLabelProvider(new ColumnLabelProvider() {
@@ -244,7 +244,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn_4 = tableViewerColumn_5.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_4, new ColumnPixelData(90, true, true));
-		tblclmnNewColumn_4.setText(Messages.SamplePart_date);
+		tblclmnNewColumn_4.setText(Messages.StockQuotesPart_date);
 		
 		TableViewerColumn tableViewerColumn_6 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_6.setLabelProvider(new ColumnLabelProvider() {
@@ -254,7 +254,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn_5 = tableViewerColumn_6.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_5, new ColumnPixelData(90, true, true));
-		tblclmnNewColumn_5.setText(Messages.SamplePart_endStock);
+		tblclmnNewColumn_5.setText(Messages.StockQuotesPart_endStock);
 		
 		TableViewerColumn tableViewerColumn_7 = new TableViewerColumn(tableViewer, SWT.NONE);
 		tableViewerColumn_7.setLabelProvider(new ColumnLabelProvider() {
@@ -264,7 +264,7 @@ public class StockQuotesPart implements EventHandler {
 		});
 		TableColumn tblclmnNewColumn_6 = tableViewerColumn_7.getColumn();
 		tcl_composite_3.setColumnData(tblclmnNewColumn_6, new ColumnPixelData(90, true, true));
-		tblclmnNewColumn_6.setText(Messages.SamplePart_endDate);
+		tblclmnNewColumn_6.setText(Messages.StockQuotesPart_endDate);
 		tableViewer.setContentProvider(new StockDataContentProvider());
 		
 		Composite composite_4 = new Composite(parent, SWT.NONE);
